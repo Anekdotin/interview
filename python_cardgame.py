@@ -28,7 +28,7 @@ def card_2():
     values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
     suites = ['Hearts', 'Clubs', 'Diamonds', 'Spades']
     deck = [[v + ' of ' + s,v] for s in suites for v in values]
-    print(random.choice(deck)[0])
+    print(random.choice(deck))
 
 
 card_1()
