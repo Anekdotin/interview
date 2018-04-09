@@ -58,30 +58,62 @@ FROM Item LEFT JOIN Category ON
 where Itemordermembership.orderid = 12345
 
 """
+# def grading(data, grades=('A', 'B', 'C', 'D', 'F')):
+#   inc = int(len(data) / len(grades))
+#   return {grade: data[i*inc:(i+1)*inc] for i, grade in enumerate(grades)}
+#
+
+# def grading(data):
+#     grades = ['A', 'B', 'C', 'D', 'F']
+#     range_length = int(len(data) / len(grades))
+#     print(range_length)
+#     grade_ranges = {}
+#     for i, grade in enumerate(data):
+#         print(i, grade)
+#         start_index = i * range_length
+#         stop_index = (i+1) * range_length
+#         grade_ranges[grade] = data[start_index:stop_index]
+#     return grades
 
 
-def grading(data):
-    size = len(data)
-    lenx = int(round((size * .20)))
-    print(lenx)
+def grading(grades):
+    size = len(grades)
+    lenx = (size * .20)
+    finallist = []
     for f in range(size):
             # divide length of numbers by 20% since grades a-f
-            y = (f,)
-            if 0 <= y[0] <= lenx:
-                print("A:", data[f])
-                print()
-            elif (lenx) <= y[0] <= (lenx * 2):
-                print("B:", data[f])
-                print()
-            elif (lenx) <= y[0] <= (lenx * 3):
-                print("c:", data[f])
-                print()
-            elif (lenx) <= y[0] <= (lenx * 4):
-                print("d:", data[f])
-                print()
+            if 0 <= f <= lenx:
+                if grades[f] == (grades[f-1]):
+                    letter_grade = 'A'
+                else:
+                    letter_grade = 'A'
+            elif (lenx*1) <= f <= (lenx * 2):
+                if grades[f] == (grades[f - 1]):
+                    letter_grade = 'A'
+                else:
+                    letter_grade = 'B'
+            elif (lenx*2) <= f <= (lenx * 3):
+                if grades[f] == (grades[f - 1]):
+                    letter_grade = 'B'
+                else:
+                    letter_grade = 'C'
+            elif (lenx*3) <= f <= (lenx * 4):
+                if grades[f] == (grades[f - 1]):
+                    letter_grade = 'C'
+                else:
+                    letter_grade = 'D'
             else:
-                print("f:", data[f])
-                print()
-randomlist = [99, 92, 91, 91, 89, 85, 83, 82, 80, 79, 78, 78, 77, 76, 75, 74, 62, 55, 43, 20]
-grading(randomlist)
+                if grades[f] == (grades[f - 1]):
+                    letter_grade = 'D'
+                else:
+                    letter_grade = 'F'
+
+            print("appending ", grades[f], " as ", letter_grade)
+            finallist.append([str(grades[f]), str(letter_grade)])
+    for x in finallist:
+        print(x[0],x[1])
+
+
+randomlist = [99, 92, 91, 91, 89, 89,85, 83, 82, 80, 79, 78, 78, 77, 21, 100, 45, 67, 49, 89, 87, 54, 34]
+(grading(sorted(randomlist, reverse=True)))
 
